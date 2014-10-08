@@ -1,0 +1,28 @@
+<div class="row">
+			<ul class="nav nav-tabs">
+				<li><a ui-sref="tweets">Tweet</a></li>
+				<li><a ui-sref="my-tweets({ userId:AuthUser})">My Tweet</a></li>
+				<li><a href="#">Profile</a></li>				
+				<li><a ui-sref="register">Register</a></li>
+			</ul>
+		</div>
+<div class="hero-unit">
+	<div class="row">
+		<div >
+			<label>Tweet</label>
+			<input type="text" placeholder="Type something..." ng-model="text">
+			<span class="help-bloc">type 140charater</span></br>
+			<button ng-click="submitTweet(text)">submit</button>
+		</div>
+	</div>
+	<div class="row">
+		<div>
+		<pre ng-repeat="tweet in tweets">
+				<h5>[[ tweet.text ]]</h5>
+				<p>[[ tweet.user ]]</p>
+				<p>[[ tweet.timestamp | date:'medium']]</p>
+			
+		</pre>
+
+	</div>
+</div>

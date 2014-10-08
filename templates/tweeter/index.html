@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" ng-app="tweeterApp">
+<head>
+	<meta charset="UTF-8">
+	<script src="{% static 'common/lib/angular.min.js' %}" ></script>
+	<script src="{% static 'common/lib/angular-resource.min.js' %}" ></script>
+	<script src="{% static 'common/lib/angular-route.min.js' %}" ></script>
+	<script src="{% static 'common/lib/angular-ui-router.min.js' %}" ></script>
+	<script src="{% static 'common/lib/bootstrap.min.js' %}" ></script>
+	<script src="{% static 'common/lib/jquery-2.1.1.min.js' %}" ></script>
+	<script src="{% static 'tweeter/js/app.js' %}"></script>
+	<script src="{% static 'tweeter/js/controllers.js' %}"></script>
+	<script src="{% static 'tweeter/js/services.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'common/css/bootstrap.css' %}"/>
+
+	<title>Tweeter</title>
+</head>
+<body>
+	<div class="container-fluid">
+	
+		<div class="row">
+			<h1>Test</h1>
+		</div>
+		
+		<div class="row">
+			<div class="span3">
+			{% include 'common/menu.html' %}
+			</div>
+			<div class="offset1 span8" ui-view></div>
+		</div>
+
+	</div>
+<script type="text/javascript">
+  // This allows you to access the current user id in your angular controllers.
+  angular
+      .module('tweeterApp.services')
+      .factory('AuthUser', function() {
+        return {
+          id: "{{ user.id|default:''}}",
+        }
+      });
+</script>
+</body>
+</html>
