@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'tweeter',
+    'labs',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -70,7 +71,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -97,3 +98,45 @@ TEMPLATE_DIRS = (
 #os.path.join(BASE_DIR, 'templates'),
 os.path.join(BASE_DIR, 'templates'),
 )
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'file_handler' : {
+            'level' : 'DEBUG',
+            'class' : 'logging.handlers.RotatingFileHandler',
+            'formatter' : 'verbose',
+            'filename' : os.path.join(BASE_DIR,'log/logconfig.txt')
+            }               
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'file' : {
+             'handlers' : ['file_handler'],
+             'level' : 'DEBUG'
+             }
+    }
+}

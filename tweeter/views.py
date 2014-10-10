@@ -6,8 +6,6 @@ from rest_framework import viewsets
 from tweeter.models import Tweet
 from tweeter.serializers import TweetSerializer, UserSerializer
 from django.http import Http404
-from tweeter.forms import RegisterForm
-from django.views.generic import TemplateView
 import json
 from django.http import HttpResponseBadRequest, HttpResponse
 
@@ -24,7 +22,6 @@ def index(request):
 class TweetViewSet(viewsets.ModelViewSet):
 	queryset = Tweet.objects.all()
 	serializer_class = TweetSerializer
-
 	def pre_save(self, obj):
 		obj.user = self.request.user
 
@@ -34,22 +31,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 
-class RegisterFormView(TemplateView):
-    template_name = 'common/register.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(RegisterFormView, self).get_context_data(**kwargs)
-        context.update(form1=RegisterForm(form_name='RegForm'))
-        return context	
-
-    def post(self, request, *args, **kwargs):
-    	# if not request.is_ajax():    		
-    	# 	return HttpResponseBadRequest('Expected an XMLHttpRequest')
-    	# console.lgo('1');
-    	in_data = json.loads(request.body)
-    	print type(in_data)
-    	print in_data.get('username')
-    	return HttpResponse('aaa')
     	# console.log(in_data.get('username'))
 
 # def register(request):

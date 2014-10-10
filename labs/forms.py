@@ -1,7 +1,7 @@
 from django import forms
-from djangular.forms.angular_model import NgModelFormMixin 
+from djangular.forms import NgFormValidationMixin, NgModelFormMixin 
 
-class RegisterForm(NgModelFormMixin, forms.Form):
+class RegisterForm(NgFormValidationMixin, NgModelFormMixin, forms.Form):
 	username = forms.CharField(max_length=10, min_length=3)
 	password = forms.CharField()
 	confirm  = forms.CharField()
@@ -10,3 +10,4 @@ class RegisterForm(NgModelFormMixin, forms.Form):
 	lastname  = forms.CharField()
 	hobby     = forms.CharField(required=False)
 
+    

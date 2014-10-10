@@ -26,14 +26,25 @@ tweeterControllers.controller('UserCtrl',function ($scope, Tweet, User, AuthUser
 });
 
 tweeterControllers.controller('RegisterCtrl',function ($scope, $http){
-	$scope.username = 'test';
-	$scope.password  ='pw';
+    
 
-	$scope.submit = function(){
-		var in_data = { username : $scope.username };		
+	$scope.submit = function(){	
+
+		var in_data = { username : $scope.username,
+						password : $scope.password,
+						confirm  : $scope.confirm,
+						email	 : $scope.email,
+						firstname : $scope.firstname,
+						lastname  : $scope.lastname,
+						hobby     : $scope.hobby };
+		
+	if ($scope.password != $scope.confirm) {
+			alert('패스워드 다시 입력');
+		};	
+
 		$http.post('register/',in_data)
 			.success(function(out_data){
-				alert(out_data);
+				alert(out_data)
 			});
 	};
 })
