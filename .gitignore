@@ -41,3 +41,11 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+db.sqlite3
+db.sqlite3
+labs/settings.pyc
+*.sqlite3
+db.sqlite3
+tweeter/forms.pyc
+*.pyc
