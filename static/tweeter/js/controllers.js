@@ -44,7 +44,7 @@ tweeterControllers.controller('RegisterCtrl',function ($scope, $http){
 
 		$http.post('register/',in_data)
 			.success(function(out_data){
-				if (out_data =='e'){
+				alert(out_data)
 					
 				}
 

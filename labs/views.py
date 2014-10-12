@@ -20,7 +20,7 @@ class RegisterFormView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(RegisterFormView, self).get_context_data(**kwargs)
-        context.update(form1=RegisterForm(form_name='RegForm'))
+        context.update(RegForm=RegisterForm(form_name='RegForm'))
         return context	
 
     def post(self, request, *args, **kwargs):
@@ -70,8 +70,8 @@ class RegisterFormView(TemplateView):
             print bound_register_form
             logging.debug('form %s', bound_register_form)
             if bound_register_form.errors:                
-                return HttpResponse('a');
-                # return render_to_response('common/register.html', { 'RegForm' : bound_register_form})                
+                # return HttpResponse(bound_register_form);
+                return render_to_response('common/register.html', { 'RegForm' : bound_register_form})                
             else:
                 return render_to_response('common/index.html', context_instance=RequestContext(request, user) )
         except:
