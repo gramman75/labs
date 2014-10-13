@@ -25,7 +25,7 @@ tweeterControllers.controller('UserCtrl',function ($scope, Tweet, User, AuthUser
 
 });
 
-tweeterControllers.controller('RegisterCtrl',function ($scope, $http){
+tweeterControllers.controller('RegisterCtrl',function ($scope, $http, djangoForm){
     
 
 	$scope.submit = function(){	
@@ -42,13 +42,10 @@ tweeterControllers.controller('RegisterCtrl',function ($scope, $http){
 			alert('패스워드 다시 입력');
 		};	
 
-		$http.post('register/',in_data)
-			.success(function(out_data){
-				alert(out_data)
-					
-				}
-
-			});
+	$http.post('register/',in_data)
+		.success(function(out_data){
+			alert(out_data);				
+			});	
 	};
 })
 

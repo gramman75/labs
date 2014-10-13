@@ -8,6 +8,8 @@ from django.db.utils import IntegrityError
 import json
 import logging
 from django.conf import settings
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.edit import FormView
 
 
 
@@ -15,8 +17,10 @@ logging.config.dictConfig(settings.LOGGING)
 logger = logging.getLogger('file')
 
 
-class RegisterFormView(TemplateView):
+class RegisterFormView(FormView):
     template_name = 'common/register.html'
+    form_class = RegisterForm
+    success_url = reverse_lazy('form_data_valid')
 
     def get_context_data(self, **kwargs):
         context = super(RegisterFormView, self).get_context_data(**kwargs)
@@ -71,7 +75,8 @@ class RegisterFormView(TemplateView):
             logging.debug('form %s', bound_register_form)
             if bound_register_form.errors:                
                 # return HttpResponse(bound_register_form);
-                return render_to_response('common/register.html', { 'RegForm' : bound_register_form})                
+                return super(SubscribeForm, self).clean()
+                # return render_to_response('common/register.html', { 'RegForm' : bound_register_form})                
             else:
                 return render_to_response('common/index.html', context_instance=RequestContext(request, user) )
         except:

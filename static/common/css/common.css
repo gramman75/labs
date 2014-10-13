@@ -1,0 +1,71 @@
+body{
+	position:relative;
+}
+table.subscribe ul.errorlist,
+table.subscribe ul.djng-field-errors {
+	display: inline-block;
+	list-style-type: none;
+	position: absolute;
+	left: 500px;
+	margin-top: 5px;
+}
+table.subscribe ul.errorlist li {
+	color: #e9322d;
+}
+table.subscribe ul.djng-field-errors li.invalid {
+	color: #e9322d;
+}
+table.subscribe ul.errorlist li:before,
+table.subscribe ul.djng-field-errors li.invalid:before {
+	content: "\2716\20";
+}
+table.subscribe ul.djng-field-errors li.valid:before {
+	color: #00c900;
+	content: "\2714";
+}
+table.subscribe span.helptext {
+	color: #8B8B8B;
+	display: inline-block;
+	margin-bottom: 15px;
+}
+
+table.subscribe tbody ul#id_sex,
+table.subscribe tbody ul#id_notifyme {
+	display: inline-block;
+	list-style-type: none;
+	margin-left: 0;
+}
+table.subscribe tbody ul#id_sex li,
+table.subscribe tbody ul#id_notifyme li {
+	display: inline-block;
+}
+table.subscribe tbody ul#id_sex li input,
+table.subscribe tbody ul#id_notifyme li input,
+table.subscribe tbody #id_subscribe {
+	margin-bottom: 5px;
+}
+table.subscribe tbody textarea {
+	width: 400px;
+}
+
+.radio-inline ul,
+.checkbox-inline ul {
+	display: inline-block;
+	list-style-type: none;
+	margin-left: 0;
+}
+.radio-inline ul li,
+.checkbox-inline ul li {
+	display: inline-block;
+}
+.radio-inline > label,
+.checkbox-inline > label {
+	padding-right: 25px;
+}
+.radio-inline ul li label,
+.checkbox-inline ul li label {
+	display: inline-block;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}

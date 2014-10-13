@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'tweeter',
     'labs',
+    'djangular',
 )
 
 MIDDLEWARE_CLASSES = (
