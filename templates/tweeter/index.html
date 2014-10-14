@@ -11,8 +11,10 @@
 	<script src="{% static 'common/lib/jquery-2.1.1.min.js' %}" ></script>
 	<script src="{% static 'common/js/common.js' %}" ></script>
 	<script src="{% static 'tweeter/js/app.js' %}"></script>
+	 <script src="{% static 'common/js/ng-django-forms.js' %}" ></script>
 	<script src="{% static 'tweeter/js/controllers.js' %}"></script>
 	<script src="{% static 'tweeter/js/services.js' %}"></script>
+	<script src="{{ STATIC_URL }}djangular/js/django-angular.js" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="{{ STATIC_URL }}djangular/css/styles.css" rel="stylesheet" />
 	<link href="{{ STATIC_URL }}djangular/css/bootstrap3.css" rel="stylesheet" /> 
@@ -22,7 +24,7 @@
 	<title>Tweeter</title>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 	
 		<div class="row">
 			<h1>Test</h1>
@@ -32,7 +34,7 @@
 			<div class="col-md-3">
 			{% include 'common/menu.html' %}
 			</div>			
-			<div class="container col-md-8" ui-view></div>
+			<div class="col-md-8" ui-view></div>
 		</div>
 
 	</div>

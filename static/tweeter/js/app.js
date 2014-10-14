@@ -3,6 +3,7 @@ angular.module('tweeterApp', [
   'ngResource',
   'tweeterApp.services',
   'tweeterApp.controllers',
+  'ng.django.forms',
 ])
   .config(function ($interpolateProvider, $httpProvider, $resourceProvider, $stateProvider, $urlRouterProvider) {
     // Force angular to use square brackets for template tag

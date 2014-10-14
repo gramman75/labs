@@ -29,6 +29,7 @@ tweeterControllers.controller('RegisterCtrl',function ($scope, $http, djangoForm
     
 
 	$scope.submit = function(){	
+		alert($scope.subscribe_data);
 
 		var in_data = { username : $scope.username,
 						password : $scope.password,
@@ -42,7 +43,7 @@ tweeterControllers.controller('RegisterCtrl',function ($scope, $http, djangoForm
 			alert('패스워드 다시 입력');
 		};	
 
-	$http.post('register/',in_data)
+	$http.post('register/',$scope.subscribe_data)
 		.success(function(out_data){
 			alert(out_data);				
 			});	

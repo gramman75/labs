@@ -33,6 +33,7 @@ class RegisterFormView(FormView):
     	# console.lgo('1');
     	try:
             in_data = json.loads(request.body)
+            print in_data
             bound_register_form = RegisterForm( form_name='RegForm',
                                                 data={'username': in_data.get('username'),
                                                      'firstname' : in_data.get('firstname'),
@@ -43,7 +44,7 @@ class RegisterFormView(FormView):
                                                      'hobby' : in_data.get('hobby')
                                                      });
 
-            print 'valid form %s', bound_register_form.is_valid()
+            # print 'valid form %s', bound_register_form.is_valid()
 
 
 
@@ -66,16 +67,13 @@ class RegisterFormView(FormView):
                 
                 p = user.get_profile()
                 p.hobby = hobby
-                print in_data.get('hobby')
+                # print in_data.get('hobby')
                 p.save()
             
-            print bound_register_form.form_name
-            print bound_register_form.errors
-            print bound_register_form
             logging.debug('form %s', bound_register_form)
             if bound_register_form.errors:                
-                # return HttpResponse(bound_register_form);
-                return super(SubscribeForm, self).clean()
+                return HttpResponse(bound_register_form);
+                # return super(bound_register_form, self).clean()
                 # return render_to_response('common/register.html', { 'RegForm' : bound_register_form})                
             else:
                 return render_to_response('common/index.html', context_instance=RequestContext(request, user) )
