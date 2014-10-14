@@ -1,4 +1,5 @@
 <form name="{{ form.form_name }}" novalidate>
+	{% csrf_token %}
     <div class="row">
 		<div class="col-md-12">
 			{{ form.as_div }}
