@@ -31,20 +31,28 @@ class RegisterFormView(FormView):
     	# if not request.is_ajax():    		
     	# 	return HttpResponseBadRequest('Expected an XMLHttpRequest')
     	# console.lgo('1');
+        print 'aaa'
+        if request.is_ajax():
+            print 'ajax'
+            return self.ajax(request)
+        print 'non-ajax'
+        return super(RegisterFormView, self).post(request, **kwargs)
+
     	try:
             in_data = json.loads(request.body)
             print in_data
-            bound_register_form = RegisterForm( form_name='RegForm',
-                                                data={'username': in_data.get('username'),
-                                                     'firstname' : in_data.get('firstname'),
-                                                     'lastname' : in_data.get('lastname'),
-                                                     'password' : in_data.get('password'),
-                                                     'confirm'  : in_data.get('confirm'),
-                                                     'email' : in_data.get('email'),
-                                                     'hobby' : in_data.get('hobby')
-                                                     });
-
-            # print 'valid form %s', bound_register_form.is_valid()
+            # bound_register_form = RegisterForm( form_name='RegForm',
+            #                                     data={'username': in_data.get('username'),
+            #                                          'firstname' : in_data.get('firstname'),
+            #                                          'lastname' : in_data.get('lastname'),
+            #                                          'password' : in_data.get('password'),
+            #                                          'confirm'  : in_data.get('confirm'),
+            #                                          'email' : in_data.get('email'),
+            #                                          'hobby' : in_data.get('hobby')
+            #                                          });
+            bound_register_form = RegisterForm(form_name='RegForm', data = in_data);
+            print bound_register_form
+            print 'valid form %s', bound_register_form.is_valid()
 
 
 

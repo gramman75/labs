@@ -25,28 +25,22 @@ tweeterControllers.controller('UserCtrl',function ($scope, Tweet, User, AuthUser
 
 });
 
-tweeterControllers.controller('RegisterCtrl',function ($scope, $http, djangoForm){
+tweeterControllers.controller('RegisterCtrl',function ($scope, $http, $window, djangoForm){
     
 
-	$scope.submit = function(){	
-		alert($scope.subscribe_data);
-
-		var in_data = { username : $scope.username,
-						password : $scope.password,
-						confirm  : $scope.confirm,
-						email	 : $scope.email,
-						firstname : $scope.firstname,
-						lastname  : $scope.lastname,
-						hobby     : $scope.hobby };
-		
-	if ($scope.password != $scope.confirm) {
-			alert('패스워드 다시 입력');
-		};	
-
-	$http.post('register/',$scope.subscribe_data)
-		.success(function(out_data){
-			alert(out_data);				
-			});	
-	};
-})
+	   $scope.submit = function() {
+        if ($scope.subscribe_data) {
+            $http.post("register/", $scope.subscribe_data).success(function(out_data) {
+            	alert(out_data.errors);
+                if (!djangoForm.setErrors($scope.my_form, out_data.errors)) {
+                    // on successful post, redirect onto success page
+                    $window.location.href = out_data.success_url;
+                }
+            }).error(function() {
+                console.error('An error occured during submission');
+            });
+        }
+        return false;
+    };
+});
 

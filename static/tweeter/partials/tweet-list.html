@@ -6,23 +6,29 @@
 				<li><a ui-sref="register">Register</a></li>
 			</ul>
 		</div>
-<div class="hero-unit">
+<div class="well well-lg">
 	<div class="row">
-		<div >
+		<div class="well well-lg">
 			<label>Tweet</label>
-			<input type="text" placeholder="Type something..." ng-model="text">
-			<span class="help-bloc">type 140charater</span></br>
-			<button ng-click="submitTweet(text)">submit</button>
+			<input type="text" class="form-control" placeholder="Type something..." ng-model="text">
+			<p class="text-right">type 140charater</p>
+			<button ng-click="submitTweet(text)" class="btn btn-default">submit</button>
 		</div>
 	</div>
 	<div class="row">
-		<div>
-		<pre ng-repeat="tweet in tweets">
-				<h5>[[ tweet.text ]]</h5>
-				<p>[[ tweet.user ]]</p>
-				<p>[[ tweet.timestamp | date:'medium']]</p>
-			
-		</pre>
-
+		<div class="panel panel-primary" ng-repeat="tweet in tweets">
+			<div class="panel-heading">
+				<h2 class="panel-title">
+					<span class="text-left">[[ tweet.user]]</span>
+					<span class="text-right">[[ tweet.timestamp | date :'medium']]</span>
+					<!-- <span class="text-left col-md-6">[[ tweet.user]]</span>
+					<span class="text-right col-md-6">[[tweet.timestamp | date:'medium']]</span> -->
+				</h3>
+			</div>
+			<div class="panel-body">
+				[[ tweet.text]]
+			</div>
+		</div>
+		
 	</div>
 </div>

@@ -14,6 +14,9 @@ angular.module('tweeterApp', [
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
+      $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        $httpProvider.defaults.headers.common['X-CSRFToken'] = '{% csrf_value %}';
+
     // This only works in angular 3!
     // It makes dealing with Django slashes at the end of everything easier.
     $resourceProvider.defaults.stripTrailingSlashes = false;
