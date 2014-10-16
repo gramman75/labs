@@ -14,8 +14,8 @@ angular.module('tweeterApp', [
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-      $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-        $httpProvider.defaults.headers.common['X-CSRFToken'] = '{% csrf_value %}';
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    $httpProvider.defaults.headers.common['X-CSRFToken'] = '{% csrf_value %}';
 
     // This only works in angular 3!
     // It makes dealing with Django slashes at the end of everything easier.
@@ -47,6 +47,11 @@ angular.module('tweeterApp', [
         url : '/register/',        
         templateUrl : 'register/',
         controller : 'RegisterCtrl',
+       })
+       .state('success_register',{
+        url : '/success_register',
+        templateUrl : 'static/common/partials/success_register.html',
+        controller : 'SuccessRegisterCtrl',
        })
   });
 

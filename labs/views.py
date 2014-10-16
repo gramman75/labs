@@ -10,7 +10,7 @@ import logging
 from django.conf import settings
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import FormView
-
+from django.utils.encoding import force_text
 
 
 logging.config.dictConfig(settings.LOGGING)
@@ -20,22 +20,19 @@ logger = logging.getLogger('file')
 class RegisterFormView(FormView):
     template_name = 'common/register.html'
     form_class = RegisterForm
-    success_url = reverse_lazy('form_data_valid')
+    success_url = reverse_lazy('success_register')
 
-    def get_context_data(self, **kwargs):
-        context = super(RegisterFormView, self).get_context_data(**kwargs)
-        context.update(RegForm=RegisterForm(form_name='RegForm'))
-        return context	
+    def ajax(self, request):
+        form = self.form_class(data=json.loads(request.body))
+        response_data = {'errors': form.errors, 'success_url': force_text(self.success_url)}
+        print  response_data
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-    def post(self, request, *args, **kwargs):
-    	# if not request.is_ajax():    		
-    	# 	return HttpResponseBadRequest('Expected an XMLHttpRequest')
-    	# console.lgo('1');
-        print 'aaa'
+    def post(self, request, **kwargs):    	       
+        
         if request.is_ajax():
-            print 'ajax'
             return self.ajax(request)
-        print 'non-ajax'
+
         return super(RegisterFormView, self).post(request, **kwargs)
 
     	try:

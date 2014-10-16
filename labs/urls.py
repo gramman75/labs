@@ -3,6 +3,7 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from tweeter.views import TweetViewSet, UserViewSet, index 
 from labs.views import RegisterFormView
+from labs import NgFormDataValidView
 
 router = DefaultRouter()
 router.register(r'tweets',TweetViewSet)
@@ -20,5 +21,6 @@ urlpatterns = patterns('tweeter.views',
 
 urlpatterns += patterns('',
     url(r'^register/', RegisterFormView.as_view(), name='register'),
+    url(r'^success_register/', NgFormDataValidView.as_view(), name='success_register'),
 )
 	
