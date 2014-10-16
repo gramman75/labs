@@ -20,16 +20,18 @@ logger = logging.getLogger('file')
 class RegisterFormView(FormView):
     template_name = 'common/register.html'
     form_class = RegisterForm
-    success_url = reverse_lazy('success_register')
+    success_url = 'a' # reverse_lazy('success_register')
+    print 'null'
 
     def ajax(self, request):
+        print 'ajax'
         form = self.form_class(data=json.loads(request.body))
         response_data = {'errors': form.errors, 'success_url': force_text(self.success_url)}
         print  response_data
         return HttpResponse(json.dumps(response_data), content_type="application/json")
 
     def post(self, request, **kwargs):    	       
-        
+        print 'post'
         if request.is_ajax():
             return self.ajax(request)
 

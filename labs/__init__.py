@@ -6,4 +6,4 @@ class NgFormDataValidView(TemplateView):
     """
     This view just displays a success message, when a valid form was posted successfully.
     """
-    template_name = 'common/success_register.html'
+    template_name = 'common/form-data-valid.html'
