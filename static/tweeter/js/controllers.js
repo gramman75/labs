@@ -15,23 +15,27 @@ tweeterControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Twe
 	};
 
     $scope.submit = function(){
-        $state.go('success_register');
+        $state.go('profile');
     }
 
 });
 
-tweeterControllers.controller('UserCtrl',function ($scope, Tweet, User, AuthUser){
+tweeterControllers.controller('UserCtrl',function ($scope, $state, Tweet, User, AuthUser){
+    
+
+
 	$scope.tweets = {};
+
 
 	var tweets = User.get({id : AuthUser.id}, function(){
 		$scope.tweets = tweets.tweets;
+        $scope.user = tweets.user;
 	});
 
 });
 
 tweeterControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $window, djangoForm){
 	   $scope.submit = function() {
-        alert($state.$current);
         if ($scope.subscribe_data) {
             $http.post("register/", $scope.subscribe_data).success(function(out_data) {
             	// $state.go('success_register');	
@@ -40,7 +44,6 @@ tweeterControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $w
                      // $window.location.href = '/success_register/';
                     // return $resource('/success_register/');
                     $state.go('success_register');
-                    alert($window.location.href);
                     // $state.go('^.sibling')
                 }
             }).error(function() {
@@ -50,6 +53,7 @@ tweeterControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $w
     };
 });
 
+
 // tweeterControllers.controller('RegisterCtrl',function ( $scope, $http,$state){
 //     $scope.submit = function() {
 //         $state.go('success_register');
@@ -58,8 +62,8 @@ tweeterControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $w
 
 
 tweeterControllers.controller('SuccessRegisterCtrl', function ($scope){
-    null;
-})
+    $scope.abc ='ddd';
+    })
 
 
 
