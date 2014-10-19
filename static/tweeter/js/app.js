@@ -49,7 +49,7 @@ angular.module('tweeterApp', [
         controller : 'RegisterCtrl',
        })
        .state('success_register',{
-        url : 'success_register',
+        url : '/success_register/',
         templateUrl : 'static/common/partials/success_register.html',
         controller : 'SuccessRegisterCtrl',
        })

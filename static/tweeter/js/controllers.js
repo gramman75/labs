@@ -35,6 +35,9 @@ tweeterControllers.controller('UserCtrl',function ($scope, $state, Tweet, User, 
 });
 
 tweeterControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $window, djangoForm){
+
+       
+
 	   $scope.submit = function() {
         if ($scope.subscribe_data) {
             $http.post("register/", $scope.subscribe_data).success(function(out_data) {
@@ -43,7 +46,7 @@ tweeterControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $w
                     // on successful post, redirect onto success page
                      // $window.location.href = '/success_register/';
                     // return $resource('/success_register/');
-                    $state.go('success_register');
+                    $state.go(out_data.success_url);
                     // $state.go('^.sibling')
                 }
             }).error(function() {
@@ -62,7 +65,8 @@ tweeterControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $w
 
 
 tweeterControllers.controller('SuccessRegisterCtrl', function ($scope){
-    $scope.abc ='ddd';
+    $scope.first = 'frist';
+    $scope.target ='ddd';
     })
 
 
