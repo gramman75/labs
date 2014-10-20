@@ -1,8 +1,8 @@
-angular.module('tweeterApp', [
+angular.module('labsApp', [
   'ui.router',
   'ngResource',
-  'tweeterApp.services',
-  'tweeterApp.controllers',
+  'labsApp.services',
+  'labsApp.controllers',
   'ng.django.forms',
 ])
   .config(function ($interpolateProvider, $httpProvider, $resourceProvider, $stateProvider, $urlRouterProvider) {
@@ -41,7 +41,6 @@ angular.module('tweeterApp', [
       .state('profile', {
         url: '/profile/:userId',
         templateUrl: 'static/tweeter/partials/profile.html',
-        controller: 'UserCtrl',
       })
        .state('register',{
         url : '/register/',        
@@ -52,6 +51,11 @@ angular.module('tweeterApp', [
         url : '/success_register/',
         templateUrl : 'static/common/partials/success_register.html',
         controller : 'SuccessRegisterCtrl',
+       })
+       .state('login',{
+        url : '/login/',
+        templateUrl : 'login/',
+        controller : 'LoginCtrl',
        })
   });
 

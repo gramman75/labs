@@ -1,4 +1,4 @@
-angular.module('tweeterApp.services',['ngResource'])
+angular.module('labsApp.services',['ngResource'])
 	.factory('Tweet', function($resource){
 		return $resource('/api/tweets/:id/');
 	})

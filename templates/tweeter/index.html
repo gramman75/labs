@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en" ng-app="tweeterApp">
+<html lang="en" ng-app="labsApp">
 <head>
 	<meta charset="UTF-8">
 	<script src="{% static 'common/lib/angular.min.js' %}" ></script>
@@ -43,8 +43,8 @@
 <script type="text/javascript">
   // This allows you to access the current user id in your angular controllers.
   angular
-      .module('tweeterApp.services')
-      .factory('AuthUser', function() {
+      .module('labsApp.services')
+      .factory('tweeter.AuthUser', function() {
         return {
           id: "{{ user.id|default:''}}",
         }

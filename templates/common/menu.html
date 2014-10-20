@@ -1,7 +1,13 @@
 <div class="row">
 	<ul class="nav nav-list" id="nav">
 		<li class="nav-header">Header</li>
+		<!-- ur-sref는 index.html에 있는 ui-view영역에 web page를 삽입한다. 
+		     해당 기능은 ui-router module에 있음.
+		     click시에는 ui-sfre, Process처리중에는 $state.go(url)을 이용함.
+		     url은 app.js에 정의가 되어 있음 
+		 -->
 		<li class="active"><a ui-sref="tweets">Tweeter</a></li>
 		<li><a ui-sref="register">Register</a></li>
+		<li><a ui-sref="login">Login</li>
 	</ul>
 </div>
