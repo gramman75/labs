@@ -13,11 +13,19 @@ from django.conf import settings
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import FormView
 from django.utils.encoding import force_text
-from django.contrib.auth import authenticate, login
-
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 
 logging.config.dictConfig(settings.LOGGING)
 logger = logging.getLogger('file')
+
+def home(request):    
+    return render_to_response('tweeter/index.html',context_instance=RequestContext(request))    
+
+def logout(request):
+    logout(request)
 
 class LoginFormView(FormView):
     template_name = 'common/login.html'
@@ -44,7 +52,9 @@ class LoginFormView(FormView):
         print form.errors
         if not(form.errors):
             print 'pass'
-            user = authenticate(username =in_dict_data['username'],password=['password'])
+            user = authenticate(username =in_dict_data['username'],password=in_dict_data['password'])
+
+            print user
 
             if user is not None:
                 login(request, user)                                
@@ -64,14 +74,17 @@ class LoginFormView(FormView):
 
         return super(LoginFormView, self).post(request, **kwargs)
 
+
 class RegisterFormView(FormView):
     template_name = 'common/register.html'
     form_class = RegisterForm
     success_url = 'success_register'
     in_dict_data = {}
 
+
     def get_context_data(self, **kwargs):
-        context = super(RegisterFormView, self).get_context_data(**kwargs)
+        context = super(RegisterFormView, self).get_context_data(**kwargs) # context에는 form과 view class가 dict type으로 저장되어 있음.
+        # print context['view'].request
         context.update(form=RegisterForm(form_name='RegForm'))
         return context 
 

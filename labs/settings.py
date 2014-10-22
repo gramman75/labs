@@ -1,3 +1,4 @@
+# -*- encoding:utf8 -*-
 """
 Django settings for labs project.
 
@@ -26,6 +27,12 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+# template context processor
+TEMPLATE_CONTEXT_PROCESSORS = (    
+    'django.core.context_processors.csrf',
+    'django.contrib.auth.context_processors.auth',
+    )
 
 # Application definition
 
@@ -141,3 +148,15 @@ LOGGING = {
              }
     }
 }
+
+#로그인 정보가 없을 경우 이동하는 페이지
+LOGIN_URL = 'http://127.0.0.1:8000/#/login/'
+
+#user profile
+AUTH_PROFILE_MODULE = 'erp.UserProfile'
+
+#session store method
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+#whether to expire the session when close browser.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

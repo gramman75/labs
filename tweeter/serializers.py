@@ -14,4 +14,4 @@ class UserSerializer(serializers.ModelSerializer):
 	tweets = TweetSerializer(many=True, source='tweet_set')
 	class Meta:
 		model = User
-		fields = ('username','first_name','tweets')	
+		fields = ('username','first_name','last_name','last_login', 'tweets')

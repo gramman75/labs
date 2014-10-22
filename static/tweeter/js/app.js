@@ -28,8 +28,13 @@ angular.module('labsApp', [
 
     $urlRouterProvider.otherwise('/');
     $stateProvider
+      .state('home',{
+        url : '/',
+        templateUrl : 'static/common/partials/home.html',
+        controller : 'HomeCtrl',
+      })
       .state('tweets', {
-        url: '/:id',
+        url: '/tweets',
         templateUrl: 'static/tweeter/partials/tweet-list.html',
         controller: 'TweetCtrl',
       })
@@ -41,6 +46,7 @@ angular.module('labsApp', [
       .state('profile', {
         url: '/profile/:userId',
         templateUrl: 'static/tweeter/partials/profile.html',
+        controller: 'UserCtrl',
       })
        .state('register',{
         url : '/register/',        

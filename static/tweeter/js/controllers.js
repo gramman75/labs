@@ -15,24 +15,29 @@ labsControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Tweet)
 	};
 });
 
-labsControllers.controller('UserCtrl',function ($scope, $state, Tweet, User, AuthUser){
-   
+// labsControllers.controller('UserCtrl',function ($scope, $state, Tweet, User, AuthUser){
 
+// 	$scope.tweets = {};
+//     $scope.user = {}
+// 	var tweets = User.get({id : AuthUser.id}, function(){
+// 		$scope.tweets = tweets.tweets;
+//         $scope.user = tweets;
+// 	});
 
-	$scope.tweets = {};
+// });
 
+labsControllers.controller('UserCtrl', function ($scope, Tweet, User, AuthUser) {
+  $scope.tweets = {};
+  id = AuthUser.id;
+  alert(id);
+  User.get({id:id}, function(response) {
 
-	var tweets = User.get({id : AuthUser.id}, function(){
-		$scope.tweets = tweets.tweets;
-        $scope.user = tweets.user;
-	});
-
+    $scope.user = response;
+    $scope.tweets = response.tweets;
+  });
 });
 
 labsControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $window, djangoForm){
-
-       
-
 	   $scope.submit = function() {
         if ($scope.subscribe_data) {
             $http.post("register/", $scope.subscribe_data).success(function(out_data) {
@@ -51,17 +56,20 @@ labsControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $wind
     };
 });
 
-// djangoForm이 있어야 Valiation한 결과가 Web화면에 보여짐. 
 labsControllers.controller('SuccessRegisterCtrl', function ($scope, $http){
     $scope.first = 'frist';
     $scope.target ='ddd';
     })
 
-labsControllers.controller('LoginCtrl', function ($scope, $http, $state, djangoForm){
+// djangoForm이 있어야 Valiation한 결과가 Web화면에 보여짐. 
+labsControllers.controller('LoginCtrl', function ($scope, $http, $state, $window, djangoForm){
     $scope.submit = function(){
         $http.post("login/", $scope.login_data).success(function(out_data){       
-            if (!djangoForm.setErrors($scope.LoginForm, out_data.errors)){                                    
-                                $state.go(out_data.success_url); // 정상적으로 처리가 되면 view에서 정의한 Success_url로 redirect
+            if (!djangoForm.setErrors($scope.LoginForm, out_data.errors)){ 
+                                                                            
+                                $window.location.href = out_data.success_url;
+                                
+                                // $state.go(out_data.success_url); // 정상적으로 처리가 되면 view에서 정의한 Success_url로 redirect
                 }
             }).error(function(){
                 console.error('An error occured during submission');
