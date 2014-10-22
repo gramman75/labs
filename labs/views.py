@@ -17,6 +17,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
 
 logging.config.dictConfig(settings.LOGGING)
 logger = logging.getLogger('file')
@@ -26,6 +28,12 @@ def home(request):
 
 def logout(request):
     logout(request)
+
+class ProfileView(ListView):
+    template_name = 'common/profile.html'
+    def get_queryset(self):
+        user = get_object_or_404(User, id__iexact=self.args[0])
+        return user
 
 class LoginFormView(FormView):
     template_name = 'common/login.html'

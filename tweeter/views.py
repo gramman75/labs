@@ -10,6 +10,7 @@ import json
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
 from rest_framework import permissions
+from django.utils.decorators import method_decorator
 
 # def index(request):
 # 	# user = authenticate(username ='gramman75',password='kmk75042')
@@ -27,7 +28,6 @@ from rest_framework import permissions
 # 	# 	raise Http404()
 # 	# 	# return HttpResponse('<html><body>Error</body></html>') 
 
-
 class TweetViewSet(viewsets.ModelViewSet):
 
 	queryset = Tweet.objects.all()
@@ -37,13 +37,19 @@ class TweetViewSet(viewsets.ModelViewSet):
 	def pre_save(self, obj):
 		obj.user = self.request.user
 
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(TweetViewSet, self).dispatch(*args, **kwargs)
+
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 	permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super(UserViewSet, self).dispatch(*args, **kwargs)
 
 
     	# console.log(in_data.get('username'))

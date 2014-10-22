@@ -25,16 +25,20 @@ labsControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Tweet)
 // 	});
 
 // });
-
 labsControllers.controller('UserCtrl', function ($scope, Tweet, User, AuthUser) {
   $scope.tweets = {};
   id = AuthUser.id;
-  alert(id);
   User.get({id:id}, function(response) {
 
     $scope.user = response;
     $scope.tweets = response.tweets;
   });
+});
+
+labsControllers.controller('ProfileCtrl',function ($http, $window){
+    $window.location.href = 'profile/1';
+    // $http.get("profile/", AuthUser.id).success(function(out_data){
+    //     $scope.user = out_data;
 });
 
 labsControllers.controller('RegisterCtrl',function ( $scope, $http,$state, $window, djangoForm){

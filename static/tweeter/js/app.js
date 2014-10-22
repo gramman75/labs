@@ -39,14 +39,19 @@ angular.module('labsApp', [
         controller: 'TweetCtrl',
       })
       .state('my-tweets', {
-        url: '/:userId',
+        url: '/users/:userId',
         templateUrl: 'static/tweeter/partials/tweet-list.html',
         controller: 'UserCtrl',
       })
+      // .state('profile', {
+      //   url: '/profile/:userId',
+      //   templateUrl: 'static/tweeter/partials/profile.html',
+      //   controller: 'UserCtrl',
+      // })
       .state('profile', {
-        url: '/profile/:userId',
-        templateUrl: 'static/tweeter/partials/profile.html',
-        controller: 'UserCtrl',
+        url : 'profile/:user_id',
+        templateUrl : 'profile',
+        controller : 'ProfileCtrl',
       })
        .state('register',{
         url : '/register/',        
