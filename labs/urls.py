@@ -1,10 +1,11 @@
+# -*-encoding:utf8 -*-
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from tweeter.views import TweetViewSet, UserViewSet 
 from labs.views import RegisterFormView, LoginFormView, home, ProfileView
 # from labs import NgFormDataValidView
-from django.contrib.auth.decorators import login_required
+
 # from django.contrib.auth.views import login, logout
 
 router = DefaultRouter()
@@ -23,6 +24,7 @@ urlpatterns = patterns('tweeter.views',
 )
 
 urlpatterns += patterns('',
+    # form template을 return받기 위한 url. url은 app.js의 state에서 정의한 url과 같아야 함.
     url(r'^register/', RegisterFormView.as_view(), name='register'),
     url(r'^login/',LoginFormView.as_view(), name='login'),
     url(r'^logout/$','django.contrib.auth.views.logout',{'next_page' : '/'}),

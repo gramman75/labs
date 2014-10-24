@@ -39,25 +39,27 @@ angular.module('labsApp', [
         controller: 'TweetCtrl',
       })
       .state('my-tweets', {
-        url: '/users/:userId',
+        url: '/users/:userId/',
         templateUrl: 'static/tweeter/partials/tweet-list.html',
         controller: 'UserCtrl',
       })
-      // .state('profile', {
-      //   url: '/profile/:userId',
-      //   templateUrl: 'static/tweeter/partials/profile.html',
-      //   controller: 'UserCtrl',
-      // })
       .state('profile', {
-        url : 'profile/:user_id',
-        templateUrl : 'profile',
-        controller : 'ProfileCtrl',
+        url: '/profile/:userId/',
+        templateUrl: 'static/common/partials/profile.html',
+        controller: 'UserCtrl',
       })
+      // .state('profile', {
+      //   url : '/profile/:user_id/',
+      //   templateUrl : '/profile/1',
+      //   controller : 'ProfileCtrl',
+      // })
+      // form을 이용할 경우의 state구문. template은 django template dir에 있어야 함. 
        .state('register',{
         url : '/register/',        
         templateUrl : 'register/',
         controller : 'RegisterCtrl',
        })
+       // django template을 이용하지 않고 angular로 구성이 되는 페이지. template은 partials에 있음.
        .state('success_register',{
         url : '/success_register/',
         templateUrl : 'static/common/partials/success_register.html',

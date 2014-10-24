@@ -153,7 +153,7 @@ LOGGING = {
 LOGIN_URL = 'http://127.0.0.1:8000/#/login/'
 
 #user profile
-AUTH_PROFILE_MODULE = 'erp.UserProfile'
+AUTH_PROFILE_MODULE = 'labs.UserProfile'
 
 #session store method
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'

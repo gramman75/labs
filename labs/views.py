@@ -1,11 +1,10 @@
 # -*- encoding:utf8 -*-
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from labs.forms import RegisterForm, LoginForm
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.db.utils import IntegrityError
 import json
 import logging
@@ -17,8 +16,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.views.generic import ListView
-from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
 
 logging.config.dictConfig(settings.LOGGING)
 logger = logging.getLogger('file')
@@ -34,6 +32,12 @@ class ProfileView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, id__iexact=self.args[0])
         return user
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProfileView, self).dispatch(*args, **kwargs)
+
+
 
 class LoginFormView(FormView):
     template_name = 'common/login.html'
@@ -56,13 +60,10 @@ class LoginFormView(FormView):
         """
         in_dict_data = json.loads(request.body)
         form = self.form_class(data=in_dict_data)
-        print in_dict_data
-        print form.errors
-        if not(form.errors):
-            print 'pass'
-            user = authenticate(username =in_dict_data['username'],password=in_dict_data['password'])
 
-            print user
+        if not(form.errors):
+
+            user = authenticate(username =in_dict_data['username'],password=in_dict_data['password'])
 
             if user is not None:
                 login(request, user)                                
@@ -84,35 +85,49 @@ class LoginFormView(FormView):
 
 
 class RegisterFormView(FormView):
-    template_name = 'common/register.html'
-    form_class = RegisterForm
-    success_url = 'success_register'
+    template_name = 'common/register.html' #사용할 Template지정 
+    form_class = RegisterForm              # Form Class   
+    """
+    위의 변수는 FormView의 Default변수들이고 아래 변수는 사용자 변수임.
+    """
+    success_url = 'success_register'       
     in_dict_data = {}
 
 
     def get_context_data(self, **kwargs):
-        context = super(RegisterFormView, self).get_context_data(**kwargs) # context에는 form과 view class가 dict type으로 저장되어 있음.
-        # print context['view'].request
+        """
+        이 Function은 get으로 접근시, 즉 최초에 접근시 호출이 되는 function임.
+        context에는 form과 view class가 dict type으로 저장되어 있음.
+
+        """
+        context = super(RegisterFormView, self).get_context_data(**kwargs) 
+        """
+        아래에서 Form(html코드)을 context에 update하여 return함. 
+        이때 form field에 대한 Validation html코드가 포함이 되어 return이 됨. 
+        """
         context.update(form=RegisterForm(form_name='RegForm'))
         return context 
 
-    
     def ajax(self, request):
-        in_dict_data = json.loads(request.body)
-        form = self.form_class(data=in_dict_data)
-        print 'aaa'
+        """
+        form에서 submit을 하면 javascript에서 post방식으로 접근을 함.
+        아래 post function을 거쳐서 ajax function으로 이동을 시킴. 
+        """
+        in_dict_data = json.loads(request.body)     # body에 dictionary type으로 전달이 됨. 
+        form = self.form_class(data=in_dict_data)   # form을 구성을 함. 에러가 있는 지 확인함. 
         
         if not(form.errors):
-            print 'bbb'
             user = User(username=in_dict_data['username'], first_name=in_dict_data['firstname'], last_name=in_dict_data['lastname'])
             user.set_password(in_dict_data['password'])
 
             user.save()
-
+            # profile은 django 1.5부터 사라짐. 
             # p = user.get_profile()
             # p.hobby = in_dict_data['hobby']
             # p.save()
-
+        """
+        json형태로 java script의 controller로 data를 return함. 
+        """
         response_data = {'errors': form.errors, 'success_url': force_text(self.success_url)}        
         return HttpResponse(json.dumps(response_data), content_type="application/json")
             

@@ -37,6 +37,7 @@ class TweetViewSet(viewsets.ModelViewSet):
 	def pre_save(self, obj):
 		obj.user = self.request.user
 
+	
 	@method_decorator(login_required)
 	def dispatch(self, *args, **kwargs):
 		return super(TweetViewSet, self).dispatch(*args, **kwargs)

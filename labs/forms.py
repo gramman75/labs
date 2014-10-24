@@ -26,10 +26,13 @@ class LoginForm(NgModelFormMixin, NgFormValidationMixin, Bootstrap3FormMixin, fo
    	
 class RegisterForm(NgModelFormMixin, NgFormValidationMixin, Bootstrap3FormMixin, forms.Form):	
 
-	scope_prefix = 'subscribe_data'
-	form_name = 'my_form'
+	scope_prefix = 'subscribe_data' #Form의 개발 Value를 하나씩 받지 않고 전체를 받기 위함.
+	form_name = 'my_form'           #html의 form tag에서 form_name의 값이 됨. 
 
-	username = forms.CharField(initial ='aaaaaaa', max_length=10, min_length=5, validators=[validate_username])
+	"""
+	Validators 속성을 이용하여 해당 Field에 대한 Form Valdation을 적용할 수 있음. 
+	"""
+	username = forms.CharField(initial ='aaaaaaa', max_length=10, min_length=5, validators=[validate_username]) 
 	password = forms.CharField(initial ='123456', widget=forms.PasswordInput, max_length=10, min_length=6)
 	confirm  = forms.CharField(initial = '123456', widget=forms.PasswordInput)
 	email    = forms.EmailField(initial ='gramman75@gmail.com')
@@ -37,6 +40,10 @@ class RegisterForm(NgModelFormMixin, NgFormValidationMixin, Bootstrap3FormMixin,
 	lastname  = forms.CharField(initial = 'geun')
 	hobby     = forms.CharField(required=False)
 
+	"""
+	Validators속성이 해당 필드에 대한 Validation을 수행한는 것이라면 clean function은 form 전체에 대한 Validation을 수행.
+	다른 Field와의 Validation이 필요할 때 사용 함.
+	"""
 	def clean(self):
 		if (self.cleaned_data.get('firstname') == 'Kim' and self.cleaned_data.get('lastname')=='MoonGeun'):
 			raise ValidationError('The full name "John Doe" is rejected by the server.')
