@@ -70,6 +70,16 @@ angular.module('labsApp', [
         templateUrl : 'login/',
         controller : 'LoginCtrl',
        })
+       .state('led', {
+        url : '/led/',
+        templateUrl : 'led/',
+        controller : 'LEDCtrl',
+       })
+       .state('temperature', {
+        url : '/temperature/',
+        templateUrl : 'temperature/',
+        controller : 'TemperatureCtrl',
+       })
   });
 
 // angular.module('tweeterApp',[

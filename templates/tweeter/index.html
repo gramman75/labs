@@ -22,6 +22,12 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'common/css/common.css' %}"/>
 	<link rel="stylesheet" type="text/css" href="{% static 'common/css/djangular-demo.css' %}"/>
 	<title>Tweeter</title>
+	<style>
+		 #myCanvas {
+		        border: 1px solid #9C9898;
+		      }
+
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -47,6 +53,7 @@
            id: "{{ user.id|default:''}}",
          }
        });
+
  </script>
 
 </body>

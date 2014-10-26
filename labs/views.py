@@ -1,6 +1,6 @@
 # -*- encoding:utf8 -*-
 from django.views.generic import TemplateView, ListView
-from labs.forms import RegisterForm, LoginForm
+from labs.forms import RegisterForm, LoginForm, LEDForm
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -17,6 +17,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
+import serial
 
 logging.config.dictConfig(settings.LOGGING)
 logger = logging.getLogger('file')
@@ -26,6 +27,60 @@ def home(request):
 
 def logout(request):
     logout(request)
+
+class TemperatureView(TemplateView):
+    template_name = 'arduino/temperature.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TemperatureView, self).get_context_data(**kwargs)
+        ser = serial.Serial('/dev/tty.usbmodem621', 9600)
+        t = ser.readline()
+        context['temperature'] =  t
+
+        return context
+
+class LEDFormView(FormView):
+    template_name = 'common/led.html'
+    form_class    = LEDForm
+    success_url   = '/'
+
+    def get_context_data(self, **kwargs):
+        context = super(LEDFormView, self).get_context_data(**kwargs)
+        context.update(form=LEDForm(form_name='LEDForm'))
+        return context
+
+    def ajax(self,request):
+        in_dict_data = json.loads(request.body)
+        form = self.form_class(data=in_dict_data)
+        hexRGB = ''
+
+        if not(form.errors):
+            ser = serial.Serial('/dev/tty.usbmodem621',9600)
+
+            red = in_dict_data['red']
+            green = in_dict_data['green']
+            blue  = in_dict_data['blue']
+
+            rgb = str(red)+','+str(green)+','+str(blue)
+            ser.write(rgb)
+            print rgb
+            hexR = hex(red)[2:].zfill(2)
+            hexG = hex(green)[2:].zfill(2)
+            hexB = hex(blue)[2:].zfill(2)
+
+            hexRGB = '#'+hexR+hexG+hexB
+
+            print hexRGB
+
+        response_data = {'errors': form.errors, 'hexRGB' : hexRGB, 'success_url': force_text(self.success_url)}        
+        return HttpResponse(json.dumps(response_data), content_type="application/json") 
+
+
+
+    def post(self, request, **kwargs):
+        if request.is_ajax():
+            return self.ajax(request)
+        return super(LEDFormView, self).post(request, **kwargs)   
 
 class ProfileView(ListView):
     template_name = 'common/profile.html'

@@ -112,8 +112,30 @@ labsControllers.controller('LoginCtrl', function ($scope, $http, $state, $window
         };
 });
 
+labsControllers.controller('LEDCtrl', function($scope, $http, $state, djangoForm){
+  $scope.submit = function(){
+    $http.post("led/", $scope.led_data).success(function(out_data){
+      if (!djangoForm.setErrors($scope.LEDForm, out_data.errors)){
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext('2d');
+        
+       // alert(out_data.hexRGB);
+        context.strokeStyle = "#0000ff";
+        context.rect(0,0 , 30, 130 );
+        context.closePath() 
+        context.fillStyle = out_data.hexRGB;
+        context.fill();
+        context.stroke();
+      }
+      }).error(function(){
+        console.error('LED Error');
+      })
+    };
+});
 
-
+labsControllers.controllers('TemperatureCtrl', function(){
+  null;
+})
 
 
 

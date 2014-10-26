@@ -1,0 +1,19 @@
+
+
+<form name="{{ form.form_name }}" novalidate>
+	{% csrf_token %}
+    <div class="row">
+		<div class="col-md-12">
+			{{ form.as_div }}
+		</div>
+	</div>
+    <!-- <button ng-click="submit()" class="btn btn-primary" ng-disabled="{{ form.form_name }}.$invalid">Subscribe</button> -->
+    <button ng-click="submit()" class="btn btn-primary" ng-disabled="{{ form.form_name }}.$invalid" >Subscribe</button>
+</form>
+
+<canvas id="myCanvas" width="578" height="200"></canvas>
+
+
+
+
+

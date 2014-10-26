@@ -12,6 +12,25 @@ def validate_username(value):
     # if User.objects.get(username=value):
     # 	raise ValidationError('%s username already used' %value)   
 
+class LEDForm(NgModelFormMixin, NgFormValidationMixin, Bootstrap3FormMixin, forms.Form):
+	scope_prefix = 'led_data'
+	form_name    = 'led_form'
+
+	red   = forms.DecimalField(min_value=0, max_value=255, max_digits=3, initial=0)
+	green = forms.DecimalField(min_value=0, max_value=255, max_digits=3, initial=0)
+	blue  = forms.DecimalField(min_value=0, max_value=255, max_digits=3, initial=0)
+
+	# def clean_red(self):
+	# 	data = self.cleaned_data['red']
+	# 	if not(data.isdigit()):
+	# 		raise ValidationError("Only Number");
+	# 	elif (int(data) <0 or int(data) > 255 ):
+	# 		raise ValidationError("Only Number('0 ~ 255')")
+
+	
+
+
+
 class LoginForm(NgModelFormMixin, NgFormValidationMixin, Bootstrap3FormMixin, forms.Form):
 	scope_prefix = 'login_data'
 	form_name	 = 'login_form'
