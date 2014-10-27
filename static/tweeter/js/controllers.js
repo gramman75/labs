@@ -3,17 +3,26 @@ var labsControllers = angular.module('labsApp.controllers',['ui.router',]);
 labsControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Tweet){
 	$scope.tweets = {};
 
+
 	var tweets = Tweet.query(function(){
 		$scope.tweets = tweets;
 	});
 
 	$scope.submitTweet = function(text){
-		var tweet = new Tweet({text : text });
+	   	var tweet = new Tweet({text : text });
 		tweet.$save(function(){
 			$scope.tweets.unshift(tweet);
 		})
 	};
 });
+
+labsControllers.controller('QCtrl',function ($scope,HelloWorld) {
+    alert('alert');
+  console.error('aaa');
+   //alert(HelloWorld.getMessages());
+   $scope.messages = HelloWorld.getMessages();
+});
+
 
 // labsControllers.controller('UserCtrl',function ($scope, $state, Tweet, User, AuthUser){
 
@@ -28,9 +37,6 @@ labsControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Tweet)
 labsControllers.controller('UserCtrl', function ($scope, Tweet, User, AuthUser) {
   $scope.tweets = {};
   id = AuthUser.id;
-
-  console.log('userctrl');
-  console.log(id);
 
    var resp = function(response){
     $scope.user = response;
@@ -135,7 +141,6 @@ labsControllers.controller('LEDCtrl', function($scope, $http, $state, djangoForm
 
 labsControllers.controllers('TemperatureCtrl', function(){
   null;
-})
-
+});
 
 

@@ -6,6 +6,7 @@ angular.module('labsApp', [
   'ng.django.forms',
 ])
   .config(function ($interpolateProvider, $httpProvider, $resourceProvider, $stateProvider, $urlRouterProvider) {
+
     // Force angular to use square brackets for template tag
     // The alternative is using {% verbatim %}
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
@@ -25,7 +26,7 @@ angular.module('labsApp', [
     // $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
     // Routing
-
+    //alert(MyRoute);
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('home',{
@@ -79,6 +80,11 @@ angular.module('labsApp', [
         url : '/temperature/',
         templateUrl : 'temperature/',
         controller : 'TemperatureCtrl',
+       })
+       .state('q',{
+        url : '/q',
+        templateUrl : 'static/common/partials/q.html',
+        controller : 'QCtrl',
        })
   });
 
