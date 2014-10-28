@@ -1,16 +1,24 @@
 var labsControllers = angular.module('labsApp.controllers',['ui.router',]);
 
-labsControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Tweet){
+labsControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Tweet, AuthUser){
 	$scope.tweets = {};
+  $scope.authuser = AuthUser.username;
+  
 
 
 	var tweets = Tweet.query(function(){
 		$scope.tweets = tweets;
 	});
 
-   $scope.deleteTweet = function(tweet) {    
-     alert(tweet.text);
-     tweet.$delete();
+   $scope.deleteTweet = function(tweet) {   
+     if (tweet.user != $scope.authuser){
+      alert('다른 사용자의 트윗은 삭제할 수 없습니다.');
+     }
+     else{
+     tweet.$delete({id:tweet.id});
+     idx = $scope.tweets.indexOf(tweet);
+     $scope.tweets.splice(idx,1);
+     };
    };
 
 	$scope.submitTweet = function(text){

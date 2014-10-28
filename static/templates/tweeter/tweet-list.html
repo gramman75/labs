@@ -12,7 +12,7 @@
 			<label>Tweet</label>
 			<input type="text" class="form-control" placeholder="Type something..." ng-model="text">
 			<p class="text-right">type 140charater</p>
-			<button ng-click="submitTweet(text)" class="btn btn-default">submit</button>
+			<button ng-click="submitTweet(text)" class="btn btn-default" >submit</button>
 		</div>
 	</div>
 	<div class="row">
@@ -22,7 +22,7 @@
 					<span class="text-left">[[ tweet.user]]</span>
 					<span class="text-right">[[ tweet.timestamp | date :'medium']]</span>
 					<!-- <input type="hidden" ng-model="tweetId" value="[[ tweet.id ]]"> -->
-					<button class="close" ng-click="deleteTweet(tweet)">x</button>
+					<button class="close" ng-click="deleteTweet(tweet)" ng-disabled="[[ tweet.user != authuser]]">x</button>
 					<!-- <span class="text-left col-md-6">[[ tweet.user]]</span>
 					<span class="text-right col-md-6">[[tweet.timestamp | date:'medium']]</span> -->
 				</h3>

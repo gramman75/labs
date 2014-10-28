@@ -51,6 +51,7 @@
        .factory('AuthUser', function() {
          return {
            id: "{{ user.id|default:''}}",
+           username : "{{ user.username}}",
          }
        });
 
