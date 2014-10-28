@@ -32,11 +32,11 @@ class TweetViewSet(viewsets.ModelViewSet):
 
 	queryset = Tweet.objects.all()
 	serializer_class = TweetSerializer
-	permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
+	# permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+	# permissions.classes = [ permissions.AllowAny]
+	
 	def pre_save(self, obj):
 		obj.user = self.request.user
-
 	
 	@method_decorator(login_required)
 	def dispatch(self, *args, **kwargs):
@@ -46,7 +46,8 @@ class TweetViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
-	permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+	# permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+	# permissions.classes = [permissions.AllowAny]
 
 	@method_decorator(login_required)
 	def dispatch(self, *args, **kwargs):

@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from tweeter.views import TweetViewSet, UserViewSet 
-from labs.views import RegisterFormView, LoginFormView, home, ProfileView, LEDFormView, TemperatureView
+from labs.views import RegisterFormView, LoginFormView, home, ProfileView, LEDFormView, TemperatureView, testAjax
 # from labs import NgFormDataValidView
 
 # from django.contrib.auth.views import login, logout
@@ -32,6 +32,7 @@ urlpatterns += patterns('',
     url(r'^led/$',LEDFormView.as_view(), name='led'),
     url(r'^temperature/$', TemperatureView.as_view(), name='temperature'),
     url(r'^$',home, name='home'),         
+    url(r'^testAjax/$', testAjax, name='testAjax'),
     # url(r'^success_register/', NgFormDataValidView.as_view(), name='success_register'),
 
 )

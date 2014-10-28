@@ -8,6 +8,11 @@ labsControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Tweet)
 		$scope.tweets = tweets;
 	});
 
+   $scope.deleteTweet = function(tweet) {    
+     alert(tweet.text);
+     tweet.$delete();
+   };
+
 	$scope.submitTweet = function(text){
 	   	var tweet = new Tweet({text : text });
 		tweet.$save(function(){
@@ -18,7 +23,6 @@ labsControllers.controller('TweetCtrl',function TweetCtrl($scope, $state, Tweet)
 
 labsControllers.controller('QCtrl',function ($scope,HelloWorld) {
     alert('alert');
-  console.error('aaa');
    //alert(HelloWorld.getMessages());
    $scope.messages = HelloWorld.getMessages();
 });
@@ -34,8 +38,10 @@ labsControllers.controller('QCtrl',function ($scope,HelloWorld) {
 // 	});
 
 // });
-labsControllers.controller('UserCtrl', function ($scope, Tweet, User, AuthUser) {
+labsControllers.controller('UserCtrl', function ($scope, $stateParams, Tweet, User, AuthUser) {
   $scope.tweets = {};
+  console.log($stateParams);
+  console.log('para: '||$stateParams.userId);
   id = AuthUser.id;
 
    var resp = function(response){
@@ -44,14 +50,11 @@ labsControllers.controller('UserCtrl', function ($scope, Tweet, User, AuthUser) 
   };
   
 
-  if (id == '') {
-  
-    console.log('a');
+  if (id == '') {    
     User.get(resp);
   }
   else
   {
-    console.log('b');
      User.get({id:id}, resp);
     };
 
@@ -139,8 +142,12 @@ labsControllers.controller('LEDCtrl', function($scope, $http, $state, djangoForm
     };
 });
 
-labsControllers.controllers('TemperatureCtrl', function(){
-  null;
+labsControllers.controller('TemperatureCtrl', function(){
+   null;
 });
 
-
+labsControllers.controller('HomeCtrl', function($state,$stateParams){
+  // console.log($state.current.data.customData1);
+  // console.log($state.current.data.customData2);
+  null;
+});

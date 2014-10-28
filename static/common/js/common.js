@@ -12,3 +12,14 @@ $(document).ready(function(){
 	})
 })
 
+var testAjax = function(url){
+	$.ajax({
+		url : url,
+		// data : 'applicationId='+me.value,
+		async : true,
+		success : function(html){			
+			$('#contents').html(html);
+		}
+	});
+}
+

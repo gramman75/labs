@@ -22,8 +22,11 @@ import serial
 logging.config.dictConfig(settings.LOGGING)
 logger = logging.getLogger('file')
 
+def testAjax(request):
+    return HttpResponse('Test Ajax')
+    
 def home(request):    
-    return render_to_response('tweeter/index.html',context_instance=RequestContext(request))    
+    return render_to_response('common/index.html',context_instance=RequestContext(request))    
 
 def logout(request):
     logout(request)
@@ -40,7 +43,7 @@ class TemperatureView(TemplateView):
         return context
 
 class LEDFormView(FormView):
-    template_name = 'common/led.html'
+    template_name = 'arduino/led.html'
     form_class    = LEDForm
     success_url   = '/'
 

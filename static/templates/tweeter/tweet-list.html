@@ -21,6 +21,8 @@
 				<h2 class="panel-title">
 					<span class="text-left">[[ tweet.user]]</span>
 					<span class="text-right">[[ tweet.timestamp | date :'medium']]</span>
+					<!-- <input type="hidden" ng-model="tweetId" value="[[ tweet.id ]]"> -->
+					<button class="close" ng-click="deleteTweet(tweet)">x</button>
 					<!-- <span class="text-left col-md-6">[[ tweet.user]]</span>
 					<span class="text-right col-md-6">[[tweet.timestamp | date:'medium']]</span> -->
 				</h3>
