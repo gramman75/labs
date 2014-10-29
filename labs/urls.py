@@ -4,6 +4,7 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from tweeter.views import TweetViewSet, UserViewSet 
 from labs.views import RegisterFormView, LoginFormView, home, ProfileView, LEDFormView, TemperatureView, testAjax
+from todo.views import TodoViewSet
 # from labs import NgFormDataValidView
 
 # from django.contrib.auth.views import login, logout
@@ -12,6 +13,7 @@ router = DefaultRouter()
 
 router.register(r'tweets',TweetViewSet)
 router.register(r'users',UserViewSet)
+router.register(r'todos',TodoViewSet)
 
 urlpatterns = patterns('tweeter.views',
     # Examples:
