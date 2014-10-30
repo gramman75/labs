@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'labs',
     'djangular',
     'todo',
+    'board',
 )
 
 MIDDLEWARE_CLASSES = (

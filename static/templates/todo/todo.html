@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-lg-offset-2">
+		<div class="row"  ng-repeat="todo in todos">
+			<div class="col-lg-10">
+				<div class="input-group">
+					<input type="text" class="form-control" value="[[ todo.message ]]" readonly>
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" ng-click="done(todo)">Done</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<br>
+		<ul>
+			<li id="error"  class="ng-hide"></li>
+		</ul>
+		<div class="row">
+			<div class="col-lg-10">
+				<div class="input-group">
+					<input type="text" class="form-control" ng-model="message">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" ng-click="add(message)"> Add </button>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

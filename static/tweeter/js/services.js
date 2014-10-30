@@ -5,6 +5,9 @@ angular.module('labsApp.services',['ngResource'])
 	.factory('User', function($resource){
 		return $resource('/api/users/:id/');
 	})
+  .factory('Todo', function($resource){
+    return $resource('/api/todos/:id/');
+  })
 	.factory('HelloWorld', function($q, $timeout) {
   
     var getMessages = function() {

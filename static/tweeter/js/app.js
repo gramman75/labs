@@ -143,4 +143,9 @@ angular.module('labsApp', [
         templateUrl : 'static/templates/common/q.html',
         controller : 'QCtrl',
        })
+       .state('todo',{
+        url : '/todo',
+        templateUrl : 'static/templates/todo/todo.html',
+        controller : 'TodoCtrl',
+       })
   });

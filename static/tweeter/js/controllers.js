@@ -159,3 +159,42 @@ labsControllers.controller('HomeCtrl', function($state,$stateParams){
   // console.log($state.current.data.customData2);
   null;
 });
+
+labsControllers.controller('TodoCtrl', function($scope, Todo){
+  $scope.todos = {}
+  
+  var todos = Todo.query(function(){
+    $scope.todos = todos;
+  });
+
+  $scope.add = function(message){
+    var $error = $("#error");  
+    var $todoText = $("#todoText");  
+    alert(message);
+
+    if (message == null){    
+      $error.text("Error");
+      // $error.toggleClass('ng-hide');
+      $error.removeClass('ng-hide');
+      $error.addClass('ng-show');
+      return;
+    }else{
+      // $error.toggleClass('ng-hide');
+      $error.removeClass('ng-show');
+      $error.addClass('ng-hide');
+
+      var todo = new Todo({message : message});
+      todo.$save();
+      $scope.todos.push(todo);
+      $scope.message =' ';
+    };    
+
+  };
+
+  $scope.done = function(todo){
+    todo.$delete({id : todo.id});
+    var idx = $scope.todos.indexOf(todo);    
+    $scope.todos.splice(idx, 1);
+  }
+
+});
