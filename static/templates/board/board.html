@@ -1,0 +1,18 @@
+<div class="row">
+
+<div class="row">
+  <blockquote>
+  	<p>[[board.title]]</p>
+  	<footer>[[board.comment]]</footer>
+</blockquote>
+
+</div>
+<table class="table table-hover">
+  <tr ng-repeat="post in posts">
+  	<td>[[ post.id ]]</td>
+  	<td>[[ post.contents ]]</td>
+  	<td>[[ post.createdBy ]]</td>
+  	<td>[[ post.timestamp | date : 'yyyy-MM-dd HH:mm:ss' ]]</td>
+  </tr>
+</table>
+</div>

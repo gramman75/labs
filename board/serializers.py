@@ -4,15 +4,16 @@ from django.contrib.auth.models import User
 
 class ReplySerializer(serializers.ModelSerializer):
 	# post = serializers.Field(source='post')
-	# createdBy = serializers.Field(source='createdBy')
+	createdBy = serializers.Field(source='createdBy')
 
 	class Meta:
 		model = Replies
 		fields = ('id','post','contents','block','group','seq','level','createdBy','timestamp')
 
 class PostSerializer(serializers.ModelSerializer):
-	# createdBy = serializers.Field(source='createdBy')	
-	replies = serializers.RelatedField(many=True)
+	createdBy = serializers.Field(source='createdBy')	
+	# replies = serializers.RelatedField(many=True)
+	replies = ReplySerializer(many=True, read_only=True)
 
 	class Meta:
 		model = Posts
@@ -20,6 +21,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 class BoardSerializer(serializers.ModelSerializer):
 	# posts = serializers.RelatedField(many=True)
+	posts = PostSerializer(many=True, read_only=True) 
 
 	class Meta:
 		model = Boards

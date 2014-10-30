@@ -25,7 +25,7 @@ class Boards(models.Model):
 		return self.title
 
 class Posts(models.Model):
-	board = models.ForeignKey(Boards, related_name="board") 
+	board = models.ForeignKey(Boards, related_name="posts") 
 	title = models.CharField(max_length = 240)
 	contents = models.TextField()
 	block    = models.CharField(choices=YES_NO, default = 'No', max_length=2)
@@ -39,7 +39,7 @@ class Posts(models.Model):
 		return self.title
 
 class Replies(models.Model):
-	post = models.ForeignKey(Posts, related_name='post')
+	post = models.ForeignKey(Posts, related_name='replies')
 	contents = models.TextField()
 	block    = models.CharField(choices=YES_NO, default = 'N', max_length=1)
 	group    = models.DecimalField(max_digits=100000 , decimal_places = 10)

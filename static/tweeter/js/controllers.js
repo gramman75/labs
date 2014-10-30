@@ -170,7 +170,6 @@ labsControllers.controller('TodoCtrl', function($scope, Todo){
   $scope.add = function(message){
     var $error = $("#error");  
     var $todoText = $("#todoText");  
-    alert(message);
 
     if (message == null){    
       $error.text("Error");
@@ -198,3 +197,16 @@ labsControllers.controller('TodoCtrl', function($scope, Todo){
   }
 
 });
+
+labsControllers.controller('BoardCtrl',function($state, $scope, Board, Post, Reply){
+  $scope.board= {};
+  $scope.posts = {}
+
+  var board = Board.get({id:$state.current.data.id}, function(response){
+    $scope.board = response;
+  });
+
+  var posts = Board.get({id:$state.current.data.id}, function(response){
+    $scope.posts = response.posts;
+  });
+})

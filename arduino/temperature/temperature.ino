@@ -32,7 +32,7 @@ void loop()                     // run over and over again
                     // mV offset
                                                   //to degrees ((volatge - 500mV) times 100)
  Serial.println(temperature);                     //printing the result
- delay(1000);                                     //waiting a second
+ delay(2000);                                     //waiting a second
 }
 
 /*

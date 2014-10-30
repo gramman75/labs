@@ -8,6 +8,15 @@ angular.module('labsApp.services',['ngResource'])
   .factory('Todo', function($resource){
     return $resource('/api/todos/:id/');
   })
+  .factory('Board', function($resource){
+    return $resource('/api/boards/:id/');
+  })
+  .factory('Post', function($resource){
+    return $resource('/api/posts/:id/');
+  })
+  .factory('Reply', function($resource){
+    return $resource('/api/replies/:id/');
+  })
 	.factory('HelloWorld', function($q, $timeout) {
   
     var getMessages = function() {
