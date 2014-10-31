@@ -9,10 +9,12 @@
 </div>
 <table class="table table-hover">
   <tr ng-repeat="post in posts">
-  	<td>[[ post.id ]]</td>
-  	<td>[[ post.contents ]]</td>
-  	<td>[[ post.createdBy ]]</td>
-  	<td>[[ post.timestamp | date : 'yyyy-MM-dd HH:mm:ss' ]]</td>
+  	<a ui-sref="p({id:[[post.id]]})">
+	  	<td>[[ post.id ]]</td>
+	  	<td>[[ post.contents ]]</td>
+	  	<td>[[ post.createdBy ]]</td>
+	  	<td>[[ post.timestamp | date : 'yyyy-MM-dd HH:mm:ss' ]]</td>
+    </a>
   </tr>
 </table>
 </div>

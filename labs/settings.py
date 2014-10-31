@@ -27,7 +27,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SOCKETIO_HOST = '1.1.1.1'
+SOCKETIO_PORT = '80'
 # template context processor
 TEMPLATE_CONTEXT_PROCESSORS = (    
     'django.core.context_processors.csrf',
@@ -49,6 +50,7 @@ INSTALLED_APPS = (
     'djangular',
     'todo',
     'board',
+    # 'django_socketio',
 )
 
 MIDDLEWARE_CLASSES = (

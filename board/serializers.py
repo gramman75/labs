@@ -27,3 +27,7 @@ class BoardSerializer(serializers.ModelSerializer):
 		model = Boards
 		fields = ('id','type','title','comment','startDate','endDate','enabled','timestamp','user','posts')					
 
+class BoardListSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Boards
+		fields = ('id','type','title','comment','startDate','endDate','enabled','timestamp','user')

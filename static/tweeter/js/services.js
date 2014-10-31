@@ -17,6 +17,9 @@ angular.module('labsApp.services',['ngResource'])
   .factory('Reply', function($resource){
     return $resource('/api/replies/:id/');
   })
+  .factory('BoardList',function($resource){
+    return $resource('/api/boardList/:id/');
+  })
 	.factory('HelloWorld', function($q, $timeout) {
   
     var getMessages = function() {

@@ -147,11 +147,15 @@ angular.module('labsApp', [
         url : '/todo',
         templateUrl : 'static/templates/todo/todo.html',
         controller : 'TodoCtrl',
-       })
+       })      
        .state('board',{
-        url : '/board',
+        url : '/board/:id',
         templateUrl : 'static/templates/board/board.html',
         controller : 'BoardCtrl',
-        data : {id : 6},
+        // data : {id : 6},
+       })
+       .state('p',{
+        url : '/post/:id/',
+        template
        })
   });

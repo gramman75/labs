@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter
 from tweeter.views import TweetViewSet, UserViewSet 
 from labs.views import RegisterFormView, LoginFormView, home, ProfileView, LEDFormView, TemperatureView, testAjax
 from todo.views import TodoViewSet
-from board.views import BoardViewSet, PostViewSet, ReplyViewSet
+from board.views import BoardViewSet, PostViewSet, ReplyViewSet, BoardListViewSet
 # from labs import NgFormDataValidView
 
 # from django.contrib.auth.views import login, logout
@@ -18,6 +18,7 @@ router.register(r'todos',TodoViewSet)
 router.register(r'boards',BoardViewSet)
 router.register(r'posts',PostViewSet)
 router.register(r'replies',ReplyViewSet)
+router.register(r'boardList',BoardListViewSet)
 
 urlpatterns = patterns('tweeter.views',
     # Examples:
@@ -41,4 +42,7 @@ urlpatterns += patterns('',
     url(r'^testAjax/$', testAjax, name='testAjax'),
     # url(r'^success_register/', NgFormDataValidView.as_view(), name='success_register'),
 )
-	
+
+# urppatterns += patterns('',
+#     url("", include('django_socketio.urls'))
+# )	

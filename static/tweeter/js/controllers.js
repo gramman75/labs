@@ -66,7 +66,6 @@ labsControllers.controller('UserCtrl', function ($scope, $stateParams, Tweet, Us
      User.get({id:id}, resp);
     };
 
-
   // User.get({id:id}, function(response) {
   //   $scope.user = response;
   //   $scope.tweets = response.tweets;
@@ -198,15 +197,23 @@ labsControllers.controller('TodoCtrl', function($scope, Todo){
 
 });
 
-labsControllers.controller('BoardCtrl',function($state, $scope, Board, Post, Reply){
+labsControllers.controller('BoardCtrl',function($state, $scope, $stateParams, Board, Post, Reply){
   $scope.board= {};
   $scope.posts = {}
+  var id = $stateParams.id;
+  console.log('a : ' + $stateParams.id);
 
-  var board = Board.get({id:$state.current.data.id}, function(response){
+  var board = Board.get({id:id}, function(response){
     $scope.board = response;
   });
 
-  var posts = Board.get({id:$state.current.data.id}, function(response){
+  var posts = Board.get({id:id}, function(response){
     $scope.posts = response.posts;
+  });
+})
+
+labsControllers.controller('MenuCtrl', function($scope, $stateParams, BoardList){
+  var boards = BoardList.query(function(response){
+    $scope.boards = boards;
   });
 })
