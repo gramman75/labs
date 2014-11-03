@@ -43,6 +43,14 @@ urlpatterns += patterns('',
     # url(r'^success_register/', NgFormDataValidView.as_view(), name='success_register'),
 )
 
-# urppatterns += patterns('',
-#     url("", include('django_socketio.urls'))
-# )	
+urlpatterns += patterns('',
+    url("", include('django_socketio.urls'))
+)	
+
+
+urlpatterns = patterns("chat.views",
+    url("^rooms/$", "rooms", name="rooms"),
+    url("^create/$", "create", name="create"),
+    url("^system_message/$", "system_message", name="system_message"),
+    url("^rooms/(?P<slug>.*)$", "room", name="room"),
+)

@@ -154,8 +154,8 @@ angular.module('labsApp', [
         controller : 'BoardCtrl',
         // data : {id : 6},
        })
-       .state('p',{
-        url : '/post/:id/',
-        template
-       })
+       // .state('p',{
+       //  url : '/post/:id/',
+       //  template
+       // })
   });

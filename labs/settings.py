@@ -50,7 +50,8 @@ INSTALLED_APPS = (
     'djangular',
     'todo',
     'board',
-    # 'django_socketio',
+    'django_socketio',
+    'chat',
 )
 
 MIDDLEWARE_CLASSES = (
