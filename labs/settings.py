@@ -33,6 +33,7 @@ SOCKETIO_PORT = '80'
 TEMPLATE_CONTEXT_PROCESSORS = (    
     'django.core.context_processors.csrf',
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
     )
 
 # Application definition
@@ -97,6 +98,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
 
 STATICFILES_FINDERS = (
 'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -165,3 +168,9 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 #whether to expire the session when close browser.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# REST_FRAMEWORK = {
+#     'PAGINATE_BY': 10,                 # Default to 10
+#     'PAGINATE_BY_PARAM': 5,  # Allow client to override, using `?page_size=xxx`.
+#     'MAX_PAGINATE_BY': 100             # Maximum limit allowed when using `?page_size=xxx`.
+# }

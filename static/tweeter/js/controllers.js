@@ -204,11 +204,11 @@ labsControllers.controller('BoardCtrl',function($state, $scope, $stateParams, Bo
   console.log('a : ' + $stateParams.id);
 
   var board = Board.get({id:id}, function(response){
-    $scope.board = response;
+    $scope.post = response;
   });
 
   var posts = Board.get({id:id}, function(response){
-    $scope.posts = response.posts;
+    $scope.board = response.board;
   });
 })
 

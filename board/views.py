@@ -6,8 +6,14 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class BoardViewSet(viewsets.ModelViewSet):
-	queryset = Boards.objects.all()
-	serializer_class = BoardSerializer
+	# queryset = Boards.objects.all()
+	serializer_class = PostSerializer
+
+	def get_queryset(self):
+		print self.kwargs
+		queryset = Posts.objects.filter(board__exact=self.kwargs['pk'])
+
+		return queryset
 
 	def pre_save(self, obj):
 		obj.user = self.request.user
@@ -42,4 +48,3 @@ class ReplyViewSet(viewsets.ModelViewSet):
 class BoardListViewSet(viewsets.ModelViewSet):
 	queryset = Boards.objects.all()
 	serializer_class = BoardListSerializer	
-

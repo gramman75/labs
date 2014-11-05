@@ -15,7 +15,7 @@ router = DefaultRouter()
 router.register(r'tweets',TweetViewSet)
 router.register(r'users',UserViewSet)
 router.register(r'todos',TodoViewSet)
-router.register(r'boards',BoardViewSet)
+router.register(r'boards',BoardViewSet, base_name ='get_queryset')
 router.register(r'posts',PostViewSet)
 router.register(r'replies',ReplyViewSet)
 router.register(r'boardList',BoardListViewSet)
@@ -48,7 +48,7 @@ urlpatterns += patterns('',
 )	
 
 
-urlpatterns = patterns("chat.views",
+urlpatterns += patterns("chat.views",
     url("^rooms/$", "rooms", name="rooms"),
     url("^create/$", "create", name="create"),
     url("^system_message/$", "system_message", name="system_message"),

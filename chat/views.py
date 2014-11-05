@@ -1,7 +1,8 @@
 
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render, redirect, render_to_response
 from django_socketio import broadcast, broadcast_channel, NoSocket
+from django.template import RequestContext
 
 from chat.models import ChatRoom
 
@@ -11,6 +12,7 @@ def rooms(request, template="chat/rooms.html"):
     Homepage - lists all rooms.
     """
     context = {"rooms": ChatRoom.objects.all()}
+    # return render_to_response('common/index.html',context_instance=RequestContext(request))   
     return render(request, template, context)
 
 
@@ -19,7 +21,8 @@ def room(request, slug, template="chat/room.html"):
     Show a room.
     """
     context = {"room": get_object_or_404(ChatRoom, slug=slug)}
-    return render(request, template, context)
+    return render_to_response(template, context, context_instance=RequestContext(request))
+    # return render(request, template, context)
 
 
 def create(request):

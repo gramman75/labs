@@ -7,7 +7,7 @@
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 {% load socketio_tags %}
 {% socketio %}
-<script src="{{ STATIC_URL }}js/chat.js"></script>
+
 <script>window.room = {{ room.id }};</script>
 {% endblock %}
 
@@ -21,7 +21,9 @@
 {% endblock %}
 
 {% block form %}
+<p>afasfas/<p>
 <form>
+	<input type="text">
     <input type="text" id="message" name="message">
     <input type="submit" id="submit" value="Join">
     <input type="button" id="leave" value="Leave">
