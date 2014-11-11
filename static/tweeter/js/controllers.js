@@ -197,19 +197,43 @@ labsControllers.controller('TodoCtrl', function($scope, Todo){
 
 });
 
-labsControllers.controller('BoardCtrl',function($state, $scope, $stateParams, Board, Post, Reply){
+labsControllers.controller('BoardCtrl',function($state, $scope, $stateParams, Post, Reply, Board){
   $scope.board= {};
   $scope.posts = {}
-  var id = $stateParams.id;
-  console.log('a : ' + $stateParams.id);
-
-  var board = Board.get({id:id}, function(response){
-    $scope.post = response;
+  var boardId = $stateParams.boardId;
+  console.log('boardId : ' + boardId);
+  
+  var board = Board.get({id:boardId}, function(){
+    $scope.board = board;
   });
 
-  var posts = Board.get({id:id}, function(response){
-    $scope.board = response.board;
+  var posts = Post.get({boardId:boardId} , function(){
+    // console.log(posts);
+    $scope.posts = posts.results; 
+
+    console.log(posts.next);
+    $scope.next  = posts.next;
+    $scope.previous = posts.previous;
   });
+  
+})
+
+labsControllers.controller('EmployeeCtrl',function($scope, SamSkill, SamEmployee){
+  $scope.skills = {}
+
+  var skills = SamSkill.query(function(){
+    $scope.skills = skills;
+  })
+
+  $scope.submit = function(skill){
+    console.log(skill);
+
+    var employees = SamEmployee.query({'skill':skill}, function(){
+      $scope.employees = employees;
+    })
+
+
+  }
 })
 
 labsControllers.controller('MenuCtrl', function($scope, $stateParams, BoardList){
