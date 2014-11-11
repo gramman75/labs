@@ -1,20 +1,39 @@
 <div class="row">
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">[[ board.title ]]</div>
+  <div class="panel-body">
+    <p>[[ board.comment ]]</p>
+  </div>
 
-<div class="row">
-  <blockquote>
-  	<p>[[board.title]]</p>
-  	<footer>[[board.comment]]</footer>
-</blockquote>
-
-</div>
-<table class="table table-hover">
+  <!-- Table -->
+  <table class="table table-hover">
+    <tr>
+      <th width=10>ID</th>
+      <th width=250>Title</th>
+      <th width=100>등록자</th>
+      <th>등록일</th>
+    </tr>
   <tr ng-repeat="post in posts">
-  	<a ui-sref="p({id:[[post.id]]})">
-	  	<td>[[ post.id ]]</td>
-	  	<td>[[ post.contents ]]</td>
-	  	<td>[[ post.createdBy ]]</td>
-	  	<td>[[ post.timestamp | date : 'yyyy-MM-dd HH:mm:ss' ]]</td>
+  
+    <a>
+      <td>[[ post.id ]]</td>
+      <td>[[ post.contents ]]</td>
+      <td>[[ post.createdBy ]]</td>
+      <td>[[ post.timestamp | date : 'yyyy-MM-dd' ]]</td>
     </a>
+  </tr>
+ 
+  <tr>
+    <td colspan = 4>
+     <nav>
+  <ul class="pager">
+    <li><a href="[[ previous ]]">Previous</a></li>
+    <li><a href="[[ next ]]">Next</a></li>
+  </ul>
+</nav>
+</td>
   </tr>
 </table>
 </div>
+
