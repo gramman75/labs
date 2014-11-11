@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'board',
     'django_socketio',
     'chat',
+    'ncd',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -170,7 +171,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # REST_FRAMEWORK = {
-#     'PAGINATE_BY': 10,                 # Default to 10
-#     'PAGINATE_BY_PARAM': 5,  # Allow client to override, using `?page_size=xxx`.
+#     'PAGINATE_BY': 3,                 # Default to 10
+#     'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
 #     'MAX_PAGINATE_BY': 100             # Maximum limit allowed when using `?page_size=xxx`.
 # }
