@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from board.models import Boards, Posts, Replies
 from django.contrib.auth.models import User
+from rest_framework.pagination import PaginationSerializer
 
 class ReplySerializer(serializers.ModelSerializer):
 	# post = serializers.Field(source='post')
@@ -18,6 +19,10 @@ class PostSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Posts
 		fields = ('id','board','title','contents','block','group','seq','level','createdBy','timestamp', 'replies')		
+
+class PaginationPostSerializer(PaginationSerializer):
+	class Meta:
+		object_serializer_class = PostSerializer
 
 class BoardSerializer(serializers.ModelSerializer):
 	# posts = serializers.RelatedField(many=True)
