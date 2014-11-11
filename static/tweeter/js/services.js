@@ -8,17 +8,23 @@ angular.module('labsApp.services',['ngResource'])
   .factory('Todo', function($resource){
     return $resource('/api/todos/:id/');
   })
+  .factory('Post', function($resource){
+    return $resource('/api/posts/');
+  })
   .factory('Board', function($resource){
     return $resource('/api/boards/:id/');
-  })
-  .factory('Post', function($resource){
-    return $resource('/api/posts/:id/');
   })
   .factory('Reply', function($resource){
     return $resource('/api/replies/:id/');
   })
   .factory('BoardList',function($resource){
     return $resource('/api/boardList/:id/');
+  })
+  .factory('SamSkill', function($resource){
+    return $resource('api/samskills/');
+  })
+  .factory('SamEmployee',function($resource){
+    return $resource('api/samemployees/');
   })
 	.factory('HelloWorld', function($q, $timeout) {
   
