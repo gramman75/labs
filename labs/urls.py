@@ -5,7 +5,8 @@ from rest_framework.routers import DefaultRouter
 from tweeter.views import TweetViewSet, UserViewSet 
 from labs.views import RegisterFormView, LoginFormView, home, ProfileView, LEDFormView, TemperatureView, testAjax
 from todo.views import TodoViewSet
-from board.views import BoardViewSet, PostViewSet, ReplyViewSet, BoardListViewSet
+from board.views import PostViewSet, ReplyViewSet, BoardListViewSet, BoardViewSet
+from ncd.views import SamSkillViewSet, SamEmployeeViewSet
 # from labs import NgFormDataValidView
 
 # from django.contrib.auth.views import login, logout
@@ -15,10 +16,12 @@ router = DefaultRouter()
 router.register(r'tweets',TweetViewSet)
 router.register(r'users',UserViewSet)
 router.register(r'todos',TodoViewSet)
-router.register(r'boards',BoardViewSet, base_name ='get_queryset')
+router.register(r'boards',BoardViewSet)
 router.register(r'posts',PostViewSet)
 router.register(r'replies',ReplyViewSet)
 router.register(r'boardList',BoardListViewSet)
+router.register(r'samskills',SamSkillViewSet)
+router.register(r'samemployees',SamEmployeeViewSet)
 
 urlpatterns = patterns('tweeter.views',
     # Examples:
