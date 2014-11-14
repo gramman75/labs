@@ -11,9 +11,10 @@
 		<li><a ui-sref="temperature">Temperature</a></li>
 		<li><a ui-sref="q">$q</a></li>
 		<!-- <li><a href ="testAjax" onclick="testAjax(this.href); return false;">Ajax</a></li> -->
-		<li><a href ="{% url 'testAjax' %}" onclick="testAjax(this.href); return false;">Ajax</a></li> <!-- 이렇게 하면 url을 urls.py에서만 관리하며 됨 -->
+		<li><a href ="{% url 'testAjax' %}" onclick="contentAjax(this.href); return false;">Ajax</a></li> <!-- 이렇게 하면 url을 urls.py에서만 관리하며 됨 -->
 		<li><a ui-sref="todo">Todo</a></li>
-		<li ng-repeat="board in boards"><a ui-sref="board({id:[[board.id]]})">[[board.title]]</a></li>
+		<li ng-repeat="board in boards"><a ui-sref="post({id:[[board.id]]})">[[board.title]]</a></li>
+		<li><a ui-sref="samEmployee()">NCD</a></li>
 		<li><a ui-sref="profile({ userId:AuthUser })">Profile</a></li>	
 		<li><a ui-sref="register">Register</a></li>
 		{% if user.is_authenticated %}     

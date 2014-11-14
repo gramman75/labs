@@ -6,7 +6,7 @@ from tweeter.views import TweetViewSet, UserViewSet
 from labs.views import RegisterFormView, LoginFormView, home, ProfileView, LEDFormView, TemperatureView, testAjax
 from todo.views import TodoViewSet
 from board.views import PostViewSet, ReplyViewSet, BoardListViewSet, BoardViewSet
-from ncd.views import SamSkillViewSet, SamEmployeeViewSet
+from ncd.views import SamSkillViewSet, SamEmployeeViewSet, SamJobLevelViewSet, SamDivisionViewSet, SamDepartmentViewSet, EmployeeDetailView
 # from labs import NgFormDataValidView
 
 # from django.contrib.auth.views import login, logout
@@ -20,8 +20,12 @@ router.register(r'boards',BoardViewSet)
 router.register(r'posts',PostViewSet)
 router.register(r'replies',ReplyViewSet)
 router.register(r'boardList',BoardListViewSet)
+
 router.register(r'samskills',SamSkillViewSet)
 router.register(r'samemployees',SamEmployeeViewSet)
+router.register(r'samjoblevels',SamJobLevelViewSet)
+router.register(r'samdivisions',SamDivisionViewSet)
+router.register(r'samdepartments',SamDepartmentViewSet)
 
 urlpatterns = patterns('tweeter.views',
     # Examples:
@@ -43,6 +47,8 @@ urlpatterns += patterns('',
     url(r'^temperature/$', TemperatureView.as_view(), name='temperature'),
     url(r'^$',home, name='home'),         
     url(r'^testAjax/$', testAjax, name='testAjax'),
+    url(r'^employeeDetail/$', EmployeeDetailView.as_view(), name='employeeDetail'),
+    # url(r'^employeeDetail/(?P<pk>\d)/$', EmployeeDetailView.as_view(), name='employeeDetail'),
     # url(r'^success_register/', NgFormDataValidView.as_view(), name='success_register'),
 )
 

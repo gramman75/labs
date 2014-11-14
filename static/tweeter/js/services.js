@@ -24,7 +24,7 @@ angular.module('labsApp.services',['ngResource'])
     return $resource('api/samskills/');
   })
   .factory('SamEmployee',function($resource){
-    return $resource('api/samemployees/');
+    return $resource('api/samemployees/:id/');
   })
 	.factory('HelloWorld', function($q, $timeout) {
   

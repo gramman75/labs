@@ -1,0 +1,36 @@
+<form action="employeeDetail/1/" method="post">
+{% csrf_token %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><h5>상세 조회</h5></h3>
+  </div>
+  <div class="panel-body">
+
+   <table class="table table-condensed">
+    <tr>
+      <th>번호</th><td>{{form.num}}</td>
+      <th>이름</th><td>{{form.name}}</td>
+    </tr>
+    <tr>
+      <th>생년월일</th><td>{{form.birthdate}}</td>
+      <th>성별</th><td>{{form.sex}}</td>
+    </tr>
+
+    <tr>
+      <th>전화번호</th><td>{{form.telephone}}</td>
+      <th>주소</th><td>{{form.address}}</td>
+    </tr>
+    <tr>
+      <th>직업등급</th><td>{{form.joblevel_code}}</td>
+      <th>기술등급</th><td>{{form.skill_code}}</td>
+    </tr>
+    <tr>
+      <th>부서정보</th><td rowspan=3>{{form.department_code}}</td>
+    </tr>
+   </table>
+  </div>
+</div>
+
+<input type="submit" value="Submit" />
+</form>

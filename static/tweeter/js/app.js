@@ -159,4 +159,9 @@ angular.module('labsApp', [
         templateUrl : 'static/templates/ncd/employee.html',
         controller : 'EmployeeCtrl',
        })
+       .state('employeeDetail',{
+        url : '/employeeDetail/?id',
+        templateUrl : 'employeeDetail/?id',
+        controller : 'EmployeeDetailCtrl',
+       })
   });

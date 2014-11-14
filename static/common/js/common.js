@@ -12,7 +12,7 @@ $(document).ready(function(){
 	})
 })
 
-var testAjax = function(url){
+var contentAjax = function(url){
 	$.ajax({
 		url : url,
 		// data : 'applicationId='+me.value,
@@ -22,4 +22,7 @@ var testAjax = function(url){
 		}
 	});
 }
+
+
+
 

@@ -229,11 +229,37 @@ labsControllers.controller('EmployeeCtrl',function($scope, SamSkill, SamEmployee
     console.log(skill);
 
     var employees = SamEmployee.query({'skill':skill}, function(){
+      console.log(employees);
       $scope.employees = employees;
     })
 
+  $scope.detail = function(id){
+    console.log(id);
 
+    var employee = SamEmployee.get({'id' : id}, function(){
+      console.log(employee);
+      $scope.emp = employee;
+    })
   }
+  }
+})
+
+labsControllers.controller('EmployeeDetailCtrl',function($scope, $http, $stateParams, djangoForm, SamEmployee){
+   alert('aaa');
+   console.log($stateParams);
+   console.log('para: '||$stateParams['id']);
+  
+   $http.post("employeeDetail/?id=1", $scope.login_data).success(function(out_data){       
+    if (!djangoForm.setErrors($scope.LoginForm, out_data.errors)){ 
+                                                                        
+                            $window.location.href = out_data.success_url;
+                            
+                            // $state.go(out_data.success_url); // 정상적으로 처리가 되면 view에서 정의한 Success_url로 redirect
+            }
+        }).error(function(){
+            console.error('An error occured during submission');
+        })
+        
 })
 
 labsControllers.controller('MenuCtrl', function($scope, $stateParams, BoardList){
